@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+}
+main{
+    border: 2px solid red;
+    min-height: 100vh;
+    width: 60%;
+    background : url(Ressourses/plan-69159a65c5684763515973.jpg);
+    background-repeat: no-repeat ;
+    background-position: center;
+}
+section{
+    border: 2px solid black;
+    height: 100%;
+    width: 30%;
+}
