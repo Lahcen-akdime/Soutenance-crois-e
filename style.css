@@ -20,6 +20,9 @@ aside{
     flex-direction: column;
     justify-content: space-between;
 }
+h1{
+    font-size: x-large;
+}
 #addnewmember-btn{
     background-color: rgb(90, 173, 90);
     height: 5%;
@@ -50,7 +53,6 @@ justify-content: space-between;
 }
 #box1{
     height: 32%;
-    border: 2px solid blue;
     display: flex;
 justify-content: center;
 align-items: center;
@@ -59,7 +61,6 @@ flex-direction: column;
 }
 #box2{
     height: 66%;
-    border: 2px solid white;
     display: flex;
 justify-content: center;
 align-items: center;
@@ -91,7 +92,6 @@ justify-content: space-between;
     align-self: center;
 }
 #chombr1{
-border: 2px solid gold;
 width: 48%;
 display: flex;
 justify-content: center;
@@ -99,7 +99,6 @@ align-items: center;
 flex-direction: column;
 }
 #chombr2{
-border: 2px solid red;
 width: 50%;
 display: flex;
 justify-content: center;
@@ -107,7 +106,6 @@ align-items: center;
 flex-direction: column;
 }
 #chombr3{
-border: 2px solid yellow;
 width: 48%;
 display: flex;
 flex-direction: column;
@@ -115,7 +113,6 @@ justify-content: center;
 align-items: center;
 }
 #chombr4{
-border: 2px solid gray;
 width: 50%;
 display: flex;
 flex-direction: column;
