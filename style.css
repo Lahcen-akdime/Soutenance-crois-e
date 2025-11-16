@@ -8,6 +8,7 @@ body{
     display: flex;
     justify-content: space-around;
     align-items: center;
+position: relative;
 }
 aside{
     padding: 1rem;
@@ -19,6 +20,7 @@ aside{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
 }
 h1{
     font-size: x-large;
@@ -32,6 +34,7 @@ h1{
     border-radius: 15px;
     font-size: 100%;
     transition: all 1s;
+    align-self: center;
     }
 main{
     /* margin: 2%; */
@@ -43,6 +46,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 #left{
 height: 85vh;
@@ -209,4 +213,21 @@ width: 10%;
     transform: scale(10rem);
     transition: all 1s;
     border: 1px solid black;
+}
+#formmodal{
+height: 90%;
+width: 38%;
+background-color: white;
+border-radius: 15px;
+overflow: auto;
+padding: 1%;
+}
+#blurbackround{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
