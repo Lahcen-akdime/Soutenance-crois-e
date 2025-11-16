@@ -218,6 +218,7 @@ width: 10%;
 height: 90%;
 width: 38%;
 background-color: white;
+
 border-radius: 15px;
 overflow: auto;
 padding: 1%;
@@ -230,4 +231,72 @@ padding: 1%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#imageplace{
+    height: 22vh;
+    width: 30%;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+input{
+    border-radius: 5px;
+    padding: 1%;
+    border: 2px solid black;
+}
+select{
+  border-radius: 5px;
+    padding: 1%;
+    border: 2px solid black;  
+}
+.formcarte{
+    height: max-content;
+    width: 35vw;
+    border-radius: 15px;
+    background : linear-gradient(white,gray) ;
+    border: 0.2px solid rgb(106, 105, 105);
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    gap: 10px;
+}
+#Addexperience-btn{
+    background-color: gold;
+    width: 30%;
+    height: 5vh;
+    border-radius: 15px;
+    border: 1px solid gold;
+    transition: all 0.5s;
+}
+#Addexperience-btn:hover{
+transform: scale(5rem);
+border: 1px solid black;
+}
+#Update-worker-btn{
+    background-color: orange;
+    height: 5vh;
+    border: 1px solid orange;
+    border-radius: 15px;
+    color:white;
+    transition: all 0.5s;
+}
+#close-btn{
+    background-color: rgb(185, 67, 51);
+    height: 5vh;
+    border: 1px solid rgb(185, 67, 51);
+    border-radius: 15px;
+    color:white;
+    transition: all 0.5s;
+}
+#Update-worker-btn:hover{
+border: 1px solid white;
+box-shadow: 0 0 5px black;
+}
+#close-btn:hover{
+border: 1px solid white;
+box-shadow: 0 0 5px black;
 }
