@@ -243,7 +243,6 @@ form{
     width: 30%;
     border-radius: 50%;
     border: 1px solid rgb(82, 82, 82);
-    background-image: url(Ressourses/isolated-businessman-character-avatar-professional-branding_1029469-184451.jpg);
     background-size: cover;
    
 }
@@ -320,7 +319,7 @@ box-shadow: 0 0 5px black;
 
 }
 .workercarte:hover{
-box-shadow: 0 0 5px black;
+box-shadow: 0 0 2px black;
 background:linear-gradient(white,gray);
 }
 .workerszone{
