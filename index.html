@@ -13,7 +13,6 @@
     <aside>
         <div class="workerszone">
             <h1 style="color: rgb(42, 42, 42) ; margin-bottom: 1rem;">Staff members (Unassigned)</h1>
-            <!-- <div class="workercarte"></div> -->
         </div>
         <button id="addnewmember-btn" onclick=displayform()>Add a new member +</button>
     </aside>
@@ -52,6 +51,7 @@
             </div>
         </div>
     </main>
+    <!-- ==============================  formulaire ================================= -->
     <div id="blurbackround">
         <div id="formmodal">
             <form action="">
@@ -71,16 +71,16 @@
                 <div id="imageplace"></div>
                 <label for="">Experiences :</label>
                 <div id="allexperiences">
-                <div class="Experiencecarte" id="0">
-                    <label for="">Company :</label>
-                    <input type="text" id="companyname">
-                    <label for="">Role :</label>
-                    <input type="text" id="role-in-company">
-                    <label for="">From :</label>
-                    <input type="date" id="debut">
-                    <label for="">To :</label>
-                    <input type="date" id="fin">
-                </div>
+                    <div class="Experiencecarte" id="0">
+                        <label for="">Company :</label>
+                        <input type="text" id="companyname">
+                        <label for="">Role :</label>
+                        <input type="text" id="role-in-company">
+                        <label for="">From :</label>
+                        <input type="date" id="debut">
+                        <label for="">To :</label>
+                        <input type="date" id="fin">
+                    </div>
                 </div>
                 <button id="Addexperience-btn" type="button"><b>Add Experience</b> </button>
                 <label for="">Email :</label>
@@ -92,11 +92,48 @@
             </form>
         </div>
     </div>
-    <div id="blurbackround" class="forblurmodal2" onclick="returntomain()">
-<div id="formmodal" class="modal2">
-
-</div>
+    <!-- ==============================  worker description ================================= -->
+    <div id="blurbackround" class="forblurmodal2">
+        <div id="formmodal" class="modal2">
+            <div id="profil">
+                <div id="image2place"></div>
+                <div>
+                    <div>
+                        <h2 id="worker-name">worker name</h2>
+                    </div>
+                    <div>
+                        <p id="worker-role">worker-role</p>
+                    </div>
+                </div>
+            </div>
+            <div class="experiencediv">
+                <ul>
+                    <li><b>Email :</b><span id="worker-email"></span></li>
+                    <li><b>Phone :</b><span id="worker-phone"></span></li>
+                    <li><b>Current Location : </b><span>Unassigned</span></li>
+                </ul>
+            </div>
+            <div style="display:flex;flex-direction: column;gap: 1rem;">
+                <h3>Work Experience : </h3>
+                <div class="cartedescription" id="experiences-place">
+                    <!-- <div><h4 style="display: inline;">Place : </h4><p style="display: inline;">youcode</p></div>
+                <ul>
+                    <li><b>Role : </b><span>IT</span></li>
+                    <li><b>Period : </b><span>11/12/2025</span>- <span>11/07/2027</span></li>
+                </ul> -->
+                </div>
+            </div>
+            <div style="height: 10vh;">
+                <button id="closedescreption-btn" type="button" onclick="returntomain()"><b
+                        style="font-size: 1rem;">Close</b></button>
+            </div>
+        </div>
     </div>
+    <!-- ================================= select a worker ================================== -->
+     <div id="blurbackround" class="forblurmodal3">
+        <div id="formmodal3" class="modal3">
+        </div>
+        </div>
 </body>
 
 </html>
