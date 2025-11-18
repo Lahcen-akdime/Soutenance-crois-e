@@ -1,4 +1,4 @@
-// Les variaiables / tableaux //
+//===================== Les variaiables / tableaux ==================================//
 let counter = 0;
 let counter2 = 0;
 let workers = [];
@@ -15,21 +15,21 @@ const Addexperiencebtn = document.getElementById("Addexperience-btn");
 const toaddnewexperiencecarte = document.getElementById("allexperiences");
 const Experiencecarte = document.getElementsByClassName("Experiencecarte")[0];
 modaldescription.style.display="none";
-//Les button//
+// =============================== Les button =========================================//
 function displayform(){
     document.getElementById("blurbackround").style.display="flex";
 }
-// submit //
+// =============================== submit ============================================ //
 Update_worker_btn.addEventListener("click",(e)=>{
     e.preventDefault();
     document.getElementById("blurbackround").style.display="none";
-    // inputs values
+    // ============================= inputs values =================================== //
     let name = document.getElementById("name").value;
     let role = document.getElementsByTagName("select")[0].value;
     let photolink = document.getElementById("photolink");
     let email = document.getElementById("email").value;
     let phonenumber = document.getElementById("phonenumber").value;
-    // Regex //
+    // ================================ Regex ========================================= //
     if(name==""||photolink.value==""||email==""||phonenumber==""){
         alert("error");
         e.preventDefault();
@@ -52,7 +52,7 @@ else if(!phoneregex.test(phonenumber)){
 }
 
 else{
-    // l'object d'experiences 
+    // =========================== l'object d'experiences =================================//
     // inputs experiences values 
     let AllExperiencecartes = document.querySelectorAll(".Experiencecarte");
     let allexperiencestable = [];
@@ -71,7 +71,7 @@ else{
         allexperiencestable.push(experience)
         counter2 +=1;
     });
-    // l'object principale 
+    // ============================== l'object principale ================================= //
     let worker = {
         id : counter ,
         workername : name ,
@@ -86,7 +86,9 @@ else{
     workers.push(worker)
     workerexperiences.push(experiences);
     console.log(worker)
-    //Feauture add//
+    // =============================== Local storage ====================================== //
+    localStorage.setItem("worker",JSON.stringify(workers));
+    // ===================================================================================== //
     workerszone.innerHTML+=`<div class="workercarte" onClick ="showdescriptionmodal(event)">
     <div class="workerimage"; style="background:url(${worker.workerphotolink});background-size:cover"></div>
     <div>
@@ -97,7 +99,7 @@ else{
     // let workerscartes = document.querySelectorAll(".workercarte");
 }
 })
-// display image
+    // ==================================== display image ==================================== //
 photolink.addEventListener("change",(e)=>{
     document.getElementById("imageplace").style.backgroundImage=`url(${photolink.value})`;
 })
@@ -114,7 +116,7 @@ toaddnewexperiencecarte.innerHTML+=`<div class="Experiencecarte">
                 <input type="date" id="fin">
             </div>`;
 })
-// display modal of description
+// ================================== display modal of description ================================= //
 function showdescriptionmodal(e){
     console.log(e.currentTarget)
 modaldescription.style.display="flex";
@@ -124,4 +126,5 @@ function returntomain(){
     document.getElementById("blurbackround").style.display="none";
     modaldescription.style.display="none";
 }
+
 
