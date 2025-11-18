@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,87 +8,95 @@
     <script src="sctipt.js" defer></script>
     <title>Workspace</title>
 </head>
+
 <body>
     <aside>
         <div class="workerszone">
-   <h1 style="color: rgb(42, 42, 42) ; margin-bottom: 1rem;">Staff members (Unassigned)</h1>
-   <!-- <div class="workercarte"></div> -->
-   </div>
-   <button id="addnewmember-btn" onclick=displayform()>Add a new member +</button>
+            <h1 style="color: rgb(42, 42, 42) ; margin-bottom: 1rem;">Staff members (Unassigned)</h1>
+            <!-- <div class="workercarte"></div> -->
+        </div>
+        <button id="addnewmember-btn" onclick=displayform()>Add a new member +</button>
     </aside>
-<main>
-<div id="left">
-    <div id="box1">
-        <h2>Conference room</h2>
-        <button id="addinconference">+</button>
+    <main>
+        <div id="left">
+            <div id="box1">
+                <h2>Conference room</h2>
+                <button id="addinconference">+</button>
+            </div>
+            <div id="box2">
+                <h2>Reception</h2>
+                <button id="addinreception">+</button>
+            </div>
+        </div>
+        <div id="midle"></div>
+        <div id="right">
+            <div id="box3">
+                <div id="chombr1">
+                    <h2>Servers room</h2>
+                    <button id="addinservers">+</button>
+                </div>
+                <div id="chombr2">
+                    <h2>Securité room</h2>
+                    <button id="addinsecurité">+</button>
+                </div>
+            </div>
+            <div id="box4">
+                <div id="chombr3">
+                    <h2>staff room</h2>
+                    <button id="addstaff">+</button>
+                </div>
+                <div id="chombr4">
+                    <h2>Vault</h2>
+                    <button id="addvalaut">+</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div id="blurbackround">
+        <div id="formmodal">
+            <form action="">
+                <label for="">Nom :</label>
+                <input id="name" type="text">
+                <label for="">Role :</label>
+                <select name="roles" id="">
+                    <option value="Réceptionniste">Réceptionniste</option>
+                    <option value="Technicien IT">Technicien IT</option>
+                    <option value="Agent de sécurité">Agent de sécurité</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Netoyage">Netoyage</option>
+                    <option value="Autre">Autre</option>
+                </select>
+                <label for="">Photo (url) :</label>
+                <input id="photolink" type="url">
+                <div id="imageplace"></div>
+                <label for="">Experiences :</label>
+                <div id="allexperiences">
+                <div class="Experiencecarte" id="0">
+                    <label for="">Company :</label>
+                    <input type="text" id="companyname">
+                    <label for="">Role :</label>
+                    <input type="text" id="role-in-company">
+                    <label for="">From :</label>
+                    <input type="date" id="debut">
+                    <label for="">To :</label>
+                    <input type="date" id="fin">
+                </div>
+                </div>
+                <button id="Addexperience-btn" type="button"><b>Add Experience</b> </button>
+                <label for="">Email :</label>
+                <input id="email" type="email">
+                <label for="">Phone number :</label>
+                <input id="phonenumber" type="number">
+                <input type="submit" id="Update-worker-btn"></input>
+                <button id="close-btn" type="button" onclick="returntomain()"><b>Close</b></button>
+            </form>
+        </div>
     </div>
-    <div id="box2">
-        <h2>Reception</h2>
-        <button id="addinreception">+</button>
-    </div>
+    <div id="blurbackround" class="forblurmodal2" onclick="returntomain()">
+<div id="formmodal" class="modal2">
+
 </div>
-<div id="midle"></div>
-<div id="right">
-    <div id="box3">
-        <div id="chombr1">
-            <h2>Servers room</h2>
-            <button id="addinservers">+</button>
-        </div>
-        <div id="chombr2">
-            <h2>Securité room</h2>
-            <button id="addinsecurité">+</button>
-        </div>
     </div>
-    <div id="box4">
-        <div id="chombr3">
-            <h2>staff room</h2>
-            <button id="addstaff">+</button>
-        </div>
-        <div id="chombr4">
-            <h2>Vault</h2>
-            <button id="addvalaut">+</button>
-        </div>
-    </div>
-</div>
-</main>
-<div id="blurbackround">
-<div id="formmodal">
-<form action="">
-    <label for="">Nom :</label>
-    <input id="name" type="text">
-    <label for="">Role :</label>
-    <select name="roles" id="">
-        <option value="Réceptionniste">Réceptionniste</option>
-        <option value="Technicien IT">Technicien IT</option>
-        <option value="Agent de sécurité">Agent de sécurité</option>
-        <option value="Manager">Manager</option>
-        <option value="Netoyage">Netoyage</option>
-        <option value="Autre">Autre</option>
-    </select>
-    <label for="">Photo (url) :</label>
-    <input id="photolink" type="url">
-    <div id="imageplace"></div>
-    
-    <label for="">Experiences :</label>
-    <div class="formcarte">
-         <label for="">Company :</label>
-    <input type="text">
-    <label for="">Role :</label>
-    <input type="text"> 
-    <label for="">From :</label>
-    <input type="date"> 
-    <label for="">To :</label>
-    <input type="date" id="tomargin">
-    </div>
-    <button id="Addexperience-btn"><b>Add Experience</b>  </button>
-    <label for="">Email :</label>
-    <input id="email" type="email">
-    <label for="">Phone number :</label>
-    <input id="phonenumber" type="number">
-    <input type="submit" id="Update-worker-btn"></input>
-    <button id="close-btn" type="button"><b>Close</b></button>
-</form>
-</div>
-</div> 
 </body>
+
 </html>

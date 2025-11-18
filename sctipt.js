@@ -1,15 +1,20 @@
-//Les variaiables / tableaux //
+// Les variaiables / tableaux //
+let counter = 0;
+let counter2 = 0;
+let workers = [];
+let workerexperiences = [];
+let AllExperiencecartes ;
 const Update_worker_btn = document.getElementById("Update-worker-btn");
 const close_btn = document.getElementById("close_btn");
-let counter = 0;
-let workers = [];
-let allworkers = [];
 const workercarte = document.querySelector(".workercarte");
 const emailregex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{3,}$/gm ;
 const phoneregex = /^\d{10}$/;
 const lienregex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/.*)?$/;
-
-
+const modaldescription=document.getElementsByClassName("forblurmodal2")[0];
+const Addexperiencebtn = document.getElementById("Addexperience-btn");
+const toaddnewexperiencecarte = document.getElementById("allexperiences");
+const Experiencecarte = document.getElementsByClassName("Experiencecarte")[0];
+modaldescription.style.display="none";
 //Les button//
 function displayform(){
     document.getElementById("blurbackround").style.display="flex";
@@ -18,13 +23,17 @@ function displayform(){
 Update_worker_btn.addEventListener("click",(e)=>{
     e.preventDefault();
     document.getElementById("blurbackround").style.display="none";
+    // inputs values
     let name = document.getElementById("name").value;
     let role = document.getElementsByTagName("select")[0].value;
     let photolink = document.getElementById("photolink");
-    
-    
     let email = document.getElementById("email").value;
     let phonenumber = document.getElementById("phonenumber").value;
+    // inputs experiences values 
+    let company = document.getElementById("companyname").value;
+    let role_incompany = document.getElementById("role-in-company").value;
+    let datedebut = document.getElementById("debut").value;
+    let datefin = document.getElementById("fin").value;
     // Regex //
 if(name==""||photolink.value==""||email==""||phonenumber==""){
         alert("error");
@@ -47,7 +56,6 @@ if(name==""||photolink.value==""||email==""||phonenumber==""){
     return;
 }
 
-
 else{
     // l'object principale 
     let worker = {
@@ -58,35 +66,59 @@ else{
         workeremail : email,
         workerphonenumber : phonenumber,
     }
-    let workerszone = document.getElementsByClassName("workerszone")[0];
     counter+=1;
+    let workerszone = document.getElementsByClassName("workerszone")[0];
     workers.push(worker)
-    console.log(workers)
     console.log(worker.id)
+    // l'object d'experiences 
+    let experience = {
+        id : counter2 ,
+        companyname : company ,
+        role_in_company : role_incompany,
+        date_debut_with_company : datedebut,
+        date_end_with_company : datefin,
+    }
+    counter2 +=1;
+    console.log(experience);
+    workerexperiences.push(experience);
+    console.log(workerexperiences)
     //Feauture add//
-    workerszone.innerHTML+=`<div class="workercarte" onClick ="listen(event)">
+    workerszone.innerHTML+=`<div class="workercarte" onClick ="showdescriptionmodal(event)">
     <div class="workerimage"; style="background:url(${worker.workerphotolink});background-size:cover"></div>
     <div>
     <div><b>${worker.workername}</b></div>
     <div><p>${worker.workerrole}</p></div>
     </div>
     </div>`
- 
     let workerscartes = document.querySelectorAll(".workercarte");
-                    
-// for(element of workerscartes){
-// workercarte.classList.add("workerszone");
-// allworkers = querySelectorAll(".workercarte");
-// console.log(allworkers);
-// }
 }
 })
-function listen(e){
-    e.target.addEventListener("click",(v)=>{
-        alert("oui")
-    })
- 
-}
+// display image
 photolink.addEventListener("change",(e)=>{
     document.getElementById("imageplace").style.backgroundImage=`url(${photolink.value})`;
 })
+// add a experience 
+Addexperiencebtn.addEventListener("click",(e)=>{
+toaddnewexperiencecarte.innerHTML+=`<div class="Experiencecarte">
+                <label for="">Company :</label>
+                <input type="text" id="companyname">
+                <label for="">Role :</label>
+                <input type="text" id="role-in-company">
+                <label for="">From :</label>
+                <input type="date" id="debut">
+                <label for="">To :</label>
+                <input type="date" id="fin">
+            </div>`;
+let AllExperiencecartes = document.getElementsByClassName("Experiencecarte");
+})
+// display modal of description
+function showdescriptionmodal(e){
+    console.log(e.currentTarget)
+modaldescription.style.display="flex";
+// document.getElementsByClassName("modal2")[0].innerHTML
+}
+function returntomain(){
+    document.getElementById("blurbackround").style.display="none";
+    modaldescription.style.display="none";
+}
+
