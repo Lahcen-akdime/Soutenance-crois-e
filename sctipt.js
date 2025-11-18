@@ -2,8 +2,8 @@
 let counter = 0;
 let counter2 = 0;
 let workers = [];
+let experiences ;
 let workerexperiences = [];
-let AllExperiencecartes ;
 const Update_worker_btn = document.getElementById("Update-worker-btn");
 const close_btn = document.getElementById("close_btn");
 const workercarte = document.querySelector(".workercarte");
@@ -29,34 +29,48 @@ Update_worker_btn.addEventListener("click",(e)=>{
     let photolink = document.getElementById("photolink");
     let email = document.getElementById("email").value;
     let phonenumber = document.getElementById("phonenumber").value;
-    // inputs experiences values 
-    let company = document.getElementById("companyname").value;
-    let role_incompany = document.getElementById("role-in-company").value;
-    let datedebut = document.getElementById("debut").value;
-    let datefin = document.getElementById("fin").value;
     // Regex //
-if(name==""||photolink.value==""||email==""||phonenumber==""){
+    if(name==""||photolink.value==""||email==""||phonenumber==""){
         alert("error");
         e.preventDefault();
-    document.getElementById("blurbackround").style.display="flex";
+        document.getElementById("blurbackround").style.display="flex";
 }
-    else if(!lienregex.test(photolink.value)){
+else if(!lienregex.test(photolink.value)){
     alert("Le lien est pas correct")
     document.getElementById("blurbackround").style.display="flex";
     return;
 }
-    else if(!emailregex.test(email)){
+else if(!emailregex.test(email)){
     alert("pardon , l'email est incorrect , entrez la form correct de gmail pour valider")
     document.getElementById("blurbackround").style.display="flex";
     return;
 }
-    else if(!phoneregex.test(phonenumber)){
+else if(!phoneregex.test(phonenumber)){
     alert("pardon , le numero est incorrect , entrez 10 nombres pour valider")
     document.getElementById("blurbackround").style.display="flex";
     return;
 }
 
 else{
+    // l'object d'experiences 
+    // inputs experiences values 
+    let AllExperiencecartes = document.querySelectorAll(".Experiencecarte");
+    let allexperiencestable = [];
+    AllExperiencecartes.forEach(element => {
+        let company = element.querySelector("#companyname").value;
+        let role_incompany = element.querySelector("#role-in-company").value;
+        let datedebut = element.querySelector("#debut").value;
+        let datefin = element.querySelector("#fin").value;
+        let experience = {
+            id : counter2 ,
+            companyname : company,
+            role_in_company : role_incompany,
+            date_debut_with_company : datedebut,
+            date_end_with_company : datefin,
+        }
+        allexperiencestable.push(experience)
+        counter2 +=1;
+    });
     // l'object principale 
     let worker = {
         id : counter ,
@@ -65,23 +79,13 @@ else{
         workerphotolink : photolink.value,
         workeremail : email,
         workerphonenumber : phonenumber,
+        experiences : allexperiencestable ,
     }
     counter+=1;
     let workerszone = document.getElementsByClassName("workerszone")[0];
     workers.push(worker)
-    console.log(worker.id)
-    // l'object d'experiences 
-    let experience = {
-        id : counter2 ,
-        companyname : company ,
-        role_in_company : role_incompany,
-        date_debut_with_company : datedebut,
-        date_end_with_company : datefin,
-    }
-    counter2 +=1;
-    console.log(experience);
-    workerexperiences.push(experience);
-    console.log(workerexperiences)
+    workerexperiences.push(experiences);
+    console.log(worker)
     //Feauture add//
     workerszone.innerHTML+=`<div class="workercarte" onClick ="showdescriptionmodal(event)">
     <div class="workerimage"; style="background:url(${worker.workerphotolink});background-size:cover"></div>
@@ -90,7 +94,7 @@ else{
     <div><p>${worker.workerrole}</p></div>
     </div>
     </div>`
-    let workerscartes = document.querySelectorAll(".workercarte");
+    // let workerscartes = document.querySelectorAll(".workercarte");
 }
 })
 // display image
@@ -109,7 +113,6 @@ toaddnewexperiencecarte.innerHTML+=`<div class="Experiencecarte">
                 <label for="">To :</label>
                 <input type="date" id="fin">
             </div>`;
-let AllExperiencecartes = document.getElementsByClassName("Experiencecarte");
 })
 // display modal of description
 function showdescriptionmodal(e){
