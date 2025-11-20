@@ -20,11 +20,11 @@
         <div id="left">
             <div id="box1">
                 <h2>Conference room</h2>
-                <button id="addinconference">+</button>
+                <button id="addinconference" onclick="showselectmodal()">+</button>
             </div>
             <div id="box2">
                 <h2>Reception</h2>
-                <button id="addinreception">+</button>
+                <button id="addinreception" onclick="showselectmodal()">+</button>
             </div>
         </div>
         <div id="midle"></div>
@@ -32,21 +32,21 @@
             <div id="box3">
                 <div id="chombr1">
                     <h2>Servers room</h2>
-                    <button id="addinservers">+</button>
+                    <button id="addinservers" onclick="showselectmodal()">+</button>
                 </div>
                 <div id="chombr2">
                     <h2>Securité room</h2>
-                    <button id="addinsecurité">+</button>
+                    <button id="addinsecurité" onclick="showselectmodal()">+</button>
                 </div>
             </div>
             <div id="box4">
                 <div id="chombr3">
                     <h2>staff room</h2>
-                    <button id="addstaff">+</button>
+                    <button id="addstaff" onclick="showselectmodal()">+</button>
                 </div>
                 <div id="chombr4">
                     <h2>Vault</h2>
-                    <button id="addvalaut">+</button>
+                    <button id="addvalaut" onclick="showselectmodal()">+</button>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
     <!-- ==============================  formulaire ================================= -->
     <div id="blurbackround">
         <div id="formmodal">
-            <form action="">
+            <form action="" id="form-create-worker">
                 <label for="">Nom :</label>
                 <input id="name" type="text">
                 <label for="">Role :</label>
@@ -129,11 +129,22 @@
             </div>
         </div>
     </div>
-    <!-- ================================= select a worker ================================== -->
-     <div id="blurbackround" class="forblurmodal3">
+   <!-- ================================= select a worker ================================== -->
+    <div id="blurbackround" class="forblurmodal3">
         <div id="formmodal3" class="modal3">
+            <h2 style="color: rgb(42, 42, 42) ;">Select Worker to Assign : </h2>
+            <div class="workercarte">
+                    <div class="workerimage"></div>
+                    <div>
+                        <div><b>element.workername</b></div>
+                        <div><p>element.workerrole</p></div>
+                    </div>
+            </div>
+            <button id="close-btn" type="button" onclick="returntomain()">
+                <b>Close</b>
+            </button>
         </div>
-        </div>
+    </div>
 </body>
 
 </html>
