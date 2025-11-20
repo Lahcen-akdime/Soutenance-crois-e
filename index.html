@@ -20,11 +20,11 @@
         <div id="left">
             <div id="box1">
                 <h2>Conference room</h2>
-                <button id="addinconference" onclick="showselectmodal()">+</button>
+                <button id="addinconference" onclick="showselectmodal(id)">+</button>
             </div>
             <div id="box2">
                 <h2>Reception</h2>
-                <button id="addinreception" onclick="showselectmodal()">+</button>
+                <button id="addinreception" onclick="showselectmodal(id)">+</button>
             </div>
         </div>
         <div id="midle"></div>
@@ -32,21 +32,21 @@
             <div id="box3">
                 <div id="chombr1">
                     <h2>Servers room</h2>
-                    <button id="addinservers" onclick="showselectmodal()">+</button>
+                    <button id="addinservers" onclick="showselectmodal(id)">+</button>
                 </div>
                 <div id="chombr2">
                     <h2>Securité room</h2>
-                    <button id="addinsecurité" onclick="showselectmodal()">+</button>
+                    <button id="addinsecurité" onclick="showselectmodal(id)">+</button>
                 </div>
             </div>
             <div id="box4">
                 <div id="chombr3">
                     <h2>staff room</h2>
-                    <button id="addstaff" onclick="showselectmodal()">+</button>
+                    <button id="addstaffroom" onclick="showselectmodal(id)">+</button>
                 </div>
                 <div id="chombr4">
                     <h2>Vault</h2>
-                    <button id="addvalaut" onclick="showselectmodal()">+</button>
+                    <button id="addvalaut" onclick="showselectmodal(id)">+</button>
                 </div>
             </div>
         </div>
@@ -116,11 +116,6 @@
             <div style="display:flex;flex-direction: column;gap: 1rem;">
                 <h3>Work Experience : </h3>
                 <div class="cartedescription" id="experiences-place">
-                    <!-- <div><h4 style="display: inline;">Place : </h4><p style="display: inline;">youcode</p></div>
-                <ul>
-                    <li><b>Role : </b><span>IT</span></li>
-                    <li><b>Period : </b><span>11/12/2025</span>- <span>11/07/2027</span></li>
-                </ul> -->
                 </div>
             </div>
             <div style="height: 10vh;">
@@ -129,17 +124,11 @@
             </div>
         </div>
     </div>
-   <!-- ================================= select a worker ================================== -->
+    <!-- ================================= select a worker ================================== -->
     <div id="blurbackround" class="forblurmodal3">
         <div id="formmodal3" class="modal3">
             <h2 style="color: rgb(42, 42, 42) ;">Select Worker to Assign : </h2>
-            <div class="workercarte">
-                    <div class="workerimage"></div>
-                    <div>
-                        <div><b>element.workername</b></div>
-                        <div><p>element.workerrole</p></div>
-                    </div>
-            </div>
+            <div id="workersplace"></div>
             <button id="close-btn" type="button" onclick="returntomain()">
                 <b>Close</b>
             </button>

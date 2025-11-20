@@ -214,6 +214,7 @@ width: 10%;
     transition: all 1s;
     border: 1px solid black;
 }
+/* modals */
 #formmodal{
 height: 90%;
 width: 38%;
@@ -225,7 +226,7 @@ padding: 1%;
 }
 #formmodal3{
 height: 60%;
-width: 40%;
+width: 30%;
 background-color: white;
 display: flex;
 flex-direction: column;
@@ -348,7 +349,6 @@ color: black;
     margin-bottom: 3%;
 }
 .workercarte{
-    /* padding: 1rem; */
     display: flex;
     gap: 1rem;
     border: 1px solid gray;
@@ -409,4 +409,18 @@ li{
     border-radius: 15px;
      padding: 3%;
      background-color: rgb(231, 231, 231);
+}
+#selectcarte{
+    height: 75px;
+    display: flex;
+    align-items: center;
+    gap : 3%;
+    padding: 2%;
+    border: 1px solid gray;
+    border-radius: 15px ;
+}
+#workersplace{
+    display: flex;
+    flex-direction: column;
+    gap:1%;
 }

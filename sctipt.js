@@ -21,6 +21,7 @@ const workernumberinmodal = document.getElementById("worker-phone");
 const workerexperiencesplace = document.getElementById("experiences-place");
 // modal3 - add in section
 const selectmodal = document.getElementsByClassName("forblurmodal3")[0];
+const workersplaceinselectmodal = document.getElementById("workersplace")
 // addexperieces
 const Addexperiencebtn = document.getElementById("Addexperience-btn");
 const toaddnewexperiencecarte = document.getElementById("allexperiences");
@@ -177,38 +178,23 @@ workerszone.innerHTML=""
 }
 affichage()
 // ============================ Modal 3 ====================================== //
-selectmodal.style.display="flex";
-function showselectmodal(){
-workersmemory.forEach(element=>{
-
-
-
-
-
-    
+function showselectmodal(id){
+    selectmodal.style.display="flex";
+    workersplaceinselectmodal.innerHTML=""
+    workersmemory.forEach(element=>{
+        // if(element.workerrole===id){
+        workersplaceinselectmodal.innerHTML+=`
+        <div id="selectcarte">
+                            <div class="workerimage" style="background:url(${element.workerphotolink});background-size:cover"></div>
+                            <div>
+                                <div><b>${element.workername}</b></div>
+                                <div><p>${element.workerrole}</p></div>
+                            </div>
+                    </div>
+        `
+        // }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
 // =========================================================================== //
 
     
