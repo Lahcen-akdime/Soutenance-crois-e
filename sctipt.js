@@ -1,10 +1,10 @@
-//======================== Les variaiables / tableaux ==================================//
+//____________________________ Les variaiables / tableaux _____________________________ //
 let counter2 = 0 ; //pour le counter d'experience
 let workerszone = document.getElementsByClassName("workerszone")[0]; // aside worker place
-// ============================== Local storage data ===================================//
+// _______________________________ Local storage data _________________________________ //
 let newid = JSON.parse(localStorage.getItem("id")) || 0 ;           // id de chaque object
 let workersmemory = JSON.parse(localStorage.getItem("worker"))||[];    // array of objects
-// =====================================================================================//
+// ____________________________________________________________________________________ //
 const formCreateWorker = document.getElementById("form-create-worker");
 const workercarte = document.querySelector(".workercarte");          // class css de carte
 // regex
@@ -26,21 +26,21 @@ const workersplaceinselectmodal = document.getElementById("workersplace")
 const Addexperiencebtn = document.getElementById("Addexperience-btn");
 const toaddnewexperiencecarte = document.getElementById("allexperiences");
 const Experiencecarte = document.getElementsByClassName("Experiencecarte")[0];
-// =============================== Les button =========================================//
+// ______________________________ Les button _______________________________//
 function displayform(){
     document.getElementById("blurbackround").style.display="flex";
 }
-// =============================== submit ============================================ //
+// ________________________________ submit _________________________________ //
 formCreateWorker.addEventListener("submit",(e)=>{
     e.preventDefault();
     document.getElementById("blurbackround").style.display="none";
-    // ============================= inputs values =================================== //
+    // __________________________ inputs values ____________________________ //
     let name = document.getElementById("name").value;
     let role = document.getElementsByTagName("select")[0].value;
     let photolink = document.getElementById("photolink");
     let email = document.getElementById("email").value;
     let phonenumber = document.getElementById("phonenumber").value;
-    // ================================ Regex ========================================= //
+    // _______________________________ Regex _______________________________ //
     if(name==""||photolink.value==""||email==""||phonenumber==""){
         alert("error");
         e.preventDefault();
@@ -62,7 +62,7 @@ else if(!phoneregex.test(phonenumber)){
     return;
 }
 else{
-    // =========================== l'object d'experiences ================================= //
+    // _____________________________ l'object d'experiences _____________________________ //
     let AllExperiencecartes = document.querySelectorAll(".Experiencecarte");
     let allexperiencestable = [];
     AllExperiencecartes.forEach(element => {
@@ -80,7 +80,7 @@ else{
         counter2 +=1;
         allexperiencestable.push(experience)
     });
-    // ============================== l'object principale ================================= //
+    // _____________________________ l'object principale _____________________________ //
     const worker = {
         id : newid++ ,
         workername : name ,
@@ -91,12 +91,12 @@ else{
         experiences : allexperiencestable ,
     }
     workersmemory.push(worker)
-    // ============================= Local storage setItem ==================================== //
+    // _____________________________ Local storage setItem _____________________________ //
     localStorage.setItem("worker",JSON.stringify(workersmemory));
     localStorage.setItem("id",JSON.stringify(newid));
-    // =============================== Affichage ============================================== //
+    // ________________________________ Affichage ______________________________________ //
     affichage();
-    // ============================== reste the form ====================================== //
+    // ______________________________ reste the form ___________________________________ //
     document.getElementsByTagName("form")[0].reset();
     workerexperiencesplace.innerHTML=`
 <div class="experiencediv">
@@ -110,13 +110,12 @@ else{
                 <span>${element.date_end_with_company}</span></li>
             </ul>
 </div>`
-}
-})
-    // ================================== display image ==================================== //
+}})
+    // _____________________________ display image ____________________________________ //
 photolink.addEventListener("change",(e)=>{
 document.getElementById("imageplace").style.backgroundImage=`url(${photolink.value})`;
 })
-    // ================================= add a experience =================================== // 
+    // ______________________________ add a experience ________________________________ // 
 Addexperiencebtn.addEventListener("click",(e)=>{
 toaddnewexperiencecarte.innerHTML+=`<div class="Experiencecarte">
                 <label for="">Company :</label>
@@ -129,7 +128,7 @@ toaddnewexperiencecarte.innerHTML+=`<div class="Experiencecarte">
                 <input type="date" id="fin">
             </div>`;
 })
-// ============================= display modal of description =============================== //
+// __________________________ display modal of description ___________________________ //
 function showdescriptionmodal(e,objectid){
 console.log(e.currentTarget)
 // let array1 = 
@@ -155,14 +154,13 @@ workerexperiencesplace.innerHTML+=`
                 <span>${element.date_end_with_company}</span></li>
             </ul>
 </div>`
-};
-}
+}}
 function returntomain(){
     document.getElementById("blurbackround").style.display="none";
     modaldescription.style.display="none";
 selectmodal.style.display="none";
 }
-// _____________________________ Affichage _________________________________ //
+// ________________________________ Affichage _____________________________________ //
 function affichage (){
 workerszone.innerHTML=""
  workersmemory.forEach(element => {
@@ -175,70 +173,64 @@ workerszone.innerHTML=""
         <div><p>${element.workerrole}</p></div>
         </div>
         </div>`
-});
-}
+})}
 affichage()
-// ============================ Modal 3 ====================================== //
-// 2.	Salle des serveurs → uniquement les Techniciens IT
-// 3.	Salle de sécurité → uniquement les Agents de sécurité
-// 4.	Manager → peut être affecté partout
-// 5.	Netoyage → peut être affecté partout sauf à la Salle d’archives
-// 6.	Autres rôles → Valut Staff conference  |  reception conference Sécurité
-
+// _________________________________ Modal 3 _____________________________________ //
 function showselectmodal(id,value){
     selectmodal.style.display="flex";
     workersplaceinselectmodal.innerHTML=""
     workersmemory.forEach(element=>{
 // conditions pour les paraméttres de chaque sale  
-        if(id==element.workerrole){
-            workersplaceinselectmodal.innerHTML+=`
+    if(id==element.workerrole){
+        workersplaceinselectmodal.innerHTML+=`
             <div id="selectcarte">
-                                <div class="workerimage" style="background:url(${element.workerphotolink});background-size:cover"></div>
+                                <div class="workerimage" style="background:url(${element.workerphotolink});
+                                background-size:cover"></div>
                                 <div>
                                     <div><b>${element.workername}</b></div>
                                     <div><p>${element.workerrole}</p></div>
                                 </div>
-                        </div>
+            </div>
             `
             }
-        if(element.workerrole=="Netoyage" && value != "vault"){
-             workersplaceinselectmodal.innerHTML+=`
+    if(element.workerrole=="Netoyage" && value != "vault"){
+            workersplaceinselectmodal.innerHTML+=`
             <div id="selectcarte">
-                                <div class="workerimage" style="background:url(${element.workerphotolink});background-size:cover"></div>
+                                <div class="workerimage" style="background:url(${element.workerphotolink});
+                                background-size:cover"></div>
                                 <div>
                                     <div><b>${element.workername}</b></div>
                                     <div><p>${element.workerrole}</p></div>
                                 </div>
-                        </div>
+            </div>
             `
-
         }
-        else if(element.workerrole=="Autre"){
+    else if(element.workerrole=="Autre"){
             if(value=="staff" || value=="vault" || value=="conference"){
              workersplaceinselectmodal.innerHTML+=`
             <div id="selectcarte">
-                                <div class="workerimage" style="background:url(${element.workerphotolink});background-size:cover"></div>
+                                <div class="workerimage" style="background:url(${element.workerphotolink});
+                                background-size:cover"></div>
                                 <div>
                                     <div><b>${element.workername}</b></div>
                                     <div><p>${element.workerrole}</p></div>
                                 </div>
-                        </div>
+            </div>
             `
             }
         }
-        else if(element.workerrole=="Manager"){
+    else if(element.workerrole=="Manager"){
             workersplaceinselectmodal.innerHTML+=`
             <div id="selectcarte">
-                                <div class="workerimage" style="background:url(${element.workerphotolink});background-size:cover"></div>
+                                <div class="workerimage" style="background:url(${element.workerphotolink});
+                                background-size:cover"></div>
                                 <div>
                                     <div><b>${element.workername}</b></div>
                                     <div><p>${element.workerrole}</p></div>
                                 </div>
                         </div>
             `
-        }
-    });
-}
-// =========================================================================== //
+}})}
+// ___________________________________________________________________________________ //
 
     
