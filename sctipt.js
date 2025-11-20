@@ -162,13 +162,14 @@ function returntomain(){
     modaldescription.style.display="none";
 selectmodal.style.display="none";
 }
-// ============================= Affichage ==================================== //
+// _____________________________ Affichage _________________________________ //
 function affichage (){
 workerszone.innerHTML=""
  workersmemory.forEach(element => {
     workerszone.innerHTML+=`<div class="workercarte"
      onClick="showdescriptionmodal(event,${element.id})">
-        <div class="workerimage"; style="background:url(${element.workerphotolink});background-size:cover"></div>
+        <div class="workerimage"; style="background:url(${element.workerphotolink});
+        background-size:cover"></div>
         <div>
         <div><b>${element.workername}</b></div>
         <div><p>${element.workerrole}</p></div>
@@ -178,22 +179,65 @@ workerszone.innerHTML=""
 }
 affichage()
 // ============================ Modal 3 ====================================== //
-function showselectmodal(id){
+// 2.	Salle des serveurs → uniquement les Techniciens IT
+// 3.	Salle de sécurité → uniquement les Agents de sécurité
+// 4.	Manager → peut être affecté partout
+// 5.	Netoyage → peut être affecté partout sauf à la Salle d’archives
+// 6.	Autres rôles → Valut Staff conference  |  reception conference Sécurité
+
+function showselectmodal(id,value){
     selectmodal.style.display="flex";
     workersplaceinselectmodal.innerHTML=""
     workersmemory.forEach(element=>{
-        // if(element.workerrole===id){
-        workersplaceinselectmodal.innerHTML+=`
-        <div id="selectcarte">
-                            <div class="workerimage" style="background:url(${element.workerphotolink});background-size:cover"></div>
-                            <div>
-                                <div><b>${element.workername}</b></div>
-                                <div><p>${element.workerrole}</p></div>
-                            </div>
-                    </div>
-        `
-        // }
-})
+// conditions pour les paraméttres de chaque sale  
+        if(id==element.workerrole){
+            workersplaceinselectmodal.innerHTML+=`
+            <div id="selectcarte">
+                                <div class="workerimage" style="background:url(${element.workerphotolink});background-size:cover"></div>
+                                <div>
+                                    <div><b>${element.workername}</b></div>
+                                    <div><p>${element.workerrole}</p></div>
+                                </div>
+                        </div>
+            `
+            }
+        if(element.workerrole=="Netoyage" && value != "vault"){
+             workersplaceinselectmodal.innerHTML+=`
+            <div id="selectcarte">
+                                <div class="workerimage" style="background:url(${element.workerphotolink});background-size:cover"></div>
+                                <div>
+                                    <div><b>${element.workername}</b></div>
+                                    <div><p>${element.workerrole}</p></div>
+                                </div>
+                        </div>
+            `
+
+        }
+        else if(element.workerrole=="Autre"){
+            if(value=="staff" || value=="vault" || value=="conference"){
+             workersplaceinselectmodal.innerHTML+=`
+            <div id="selectcarte">
+                                <div class="workerimage" style="background:url(${element.workerphotolink});background-size:cover"></div>
+                                <div>
+                                    <div><b>${element.workername}</b></div>
+                                    <div><p>${element.workerrole}</p></div>
+                                </div>
+                        </div>
+            `
+            }
+        }
+        else if(element.workerrole=="Manager"){
+            workersplaceinselectmodal.innerHTML+=`
+            <div id="selectcarte">
+                                <div class="workerimage" style="background:url(${element.workerphotolink});background-size:cover"></div>
+                                <div>
+                                    <div><b>${element.workername}</b></div>
+                                    <div><p>${element.workerrole}</p></div>
+                                </div>
+                        </div>
+            `
+        }
+    });
 }
 // =========================================================================== //
 

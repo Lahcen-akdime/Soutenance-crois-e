@@ -123,7 +123,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 }
-#addinconference{
+.addinconference{
 background-color: rgba(11, 186, 239, 0.937);
 width: 10%;
     border: 0;
@@ -131,7 +131,7 @@ width: 10%;
     color: white;
         transition: all 1s;
 }
-#addinreception{
+.addinreception{
 background-color: rgba(11, 186, 239, 0.937);
 width: 10%;
     border: 0;
@@ -140,7 +140,7 @@ width: 10%;
     transition: all 0.5s;
 
 }
-#addinservers{
+.addinservers{
 background-color: rgba(11, 186, 239, 0.937);
 width: 10%;
     border: 0;
@@ -148,7 +148,7 @@ width: 10%;
     transition: all 1s;
     border-radius: 15px;
 }
-#addinsecurité{
+.addinsecurité{
 background-color: rgba(11, 186, 239, 0.937);
 width: 10%;
     border: 0;
@@ -156,7 +156,7 @@ width: 10%;
     transition: all 1s;
     border-radius: 15px;
 }
-#addstaff{
+.addstaffroom{
 background-color: rgba(11, 186, 239, 0.937);
 width: 10%;
     border: 0;
@@ -164,7 +164,7 @@ width: 10%;
     transition: all 1s;
     border-radius: 15px;
 }
-#addvalaut{
+.addvalaut{
 background-color: rgba(11, 186, 239, 0.937);
 width: 10%;
     border: 0;
@@ -172,43 +172,41 @@ width: 10%;
     border-radius: 15px;
     transition: all 1s;
 }
-#addnewmember-btn:hover{
+.addnewmember-btn:hover{
     box-shadow: 0 0 15px;
     transform: scale(10rem);
-    border: 1px solid black;
     transition: all 1s;
 }
-#addinconference:hover{
+.addinconference:hover{
+    box-shadow: 5px;
+    transform: scale(10rem);
+    transition: all 1s;
+    border: 1px solid black;
+}.addinreception:hover{
     box-shadow: 5px;
     transform: scale(10rem);
     transition: all 1s;
     border: 1px solid black;
 }
-#addinreception:hover{
+.addinservers:hover{
     box-shadow: 5px;
     transform: scale(10rem);
     transition: all 1s;
     border: 1px solid black;
 }
-#addinservers:hover{
+.addvalaut:hover{
     box-shadow: 5px;
     transform: scale(10rem);
     transition: all 1s;
     border: 1px solid black;
 }
-#addvalaut:hover{
+.addstaffroom:hover{
     box-shadow: 5px;
     transform: scale(10rem);
     transition: all 1s;
     border: 1px solid black;
 }
-#addstaff:hover{
-    box-shadow: 5px;
-    transform: scale(10rem);
-    transition: all 1s;
-    border: 1px solid black;
-}
-#addinsecurité:hover{
+.addinsecurité:hover{
     box-shadow: 5px;
     transform: scale(10rem);
     transition: all 1s;
@@ -230,6 +228,7 @@ width: 30%;
 background-color: white;
 display: flex;
 flex-direction: column;
+justify-content: space-between;
 border-radius: 15px;
 overflow: auto;
 padding: 1%;
@@ -318,6 +317,7 @@ border: 1px solid black;
     color:white;
     transition: all 0.5s;
     margin-top: 1%;
+    justify-self: flex-end;
 }
 #closedescreption-btn{
    background-color: rgb(43, 210, 239);
@@ -359,7 +359,6 @@ color: black;
 
 }
 .workercarte:hover{
-    transform: scale(1);
 box-shadow: 0 0 2px black;
 background:linear-gradient(white,gray);
 padding: 10px;
@@ -411,16 +410,26 @@ li{
      background-color: rgb(231, 231, 231);
 }
 #selectcarte{
-    height: 75px;
+    height: 85px;
     display: flex;
     align-items: center;
-    gap : 3%;
+    gap : 5%;
     padding: 2%;
     border: 1px solid gray;
     border-radius: 15px ;
+    transition: scale 0.5s linear;
+}
+#selectcarte:hover{
+    scale: 1.03;
 }
 #workersplace{
     display: flex;
     flex-direction: column;
-    gap:1%;
+    gap:5%;
+
+}
+.toflex{
+display: flex;
+flex-direction: column;
+gap:1rem;
 }

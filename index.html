@@ -11,20 +11,19 @@
 
 <body>
     <aside>
-        <div class="workerszone">
             <h1 style="color: rgb(42, 42, 42) ; margin-bottom: 1rem;">Staff members (Unassigned)</h1>
-        </div>
+             <div class="workerszone"></div>
         <button id="addnewmember-btn" onclick=displayform()>Add a new member +</button>
     </aside>
     <main>
         <div id="left">
             <div id="box1">
                 <h2>Conference room</h2>
-                <button id="addinconference" onclick="showselectmodal(id)">+</button>
+                <button class="addinconference" id="conference" value="conference" onclick="showselectmodal(id,value)">+</button>
             </div>
             <div id="box2">
                 <h2>Reception</h2>
-                <button id="addinreception" onclick="showselectmodal(id)">+</button>
+                <button id="Réceptionniste" class="addinreception" value="reception" onclick="showselectmodal(id,value)">+</button>
             </div>
         </div>
         <div id="midle"></div>
@@ -32,21 +31,21 @@
             <div id="box3">
                 <div id="chombr1">
                     <h2>Servers room</h2>
-                    <button id="addinservers" onclick="showselectmodal(id)">+</button>
+                    <button class="addinservers" value="servers" id="Technicien IT" onclick="showselectmodal(id,value)">+</button>
                 </div>
                 <div id="chombr2">
                     <h2>Securité room</h2>
-                    <button id="addinsecurité" onclick="showselectmodal(id)">+</button>
+                    <button class="addinsecurité" value="sécurité" id="Agent de sécurité" onclick="showselectmodal(id,value)">+</button>
                 </div>
             </div>
             <div id="box4">
                 <div id="chombr3">
                     <h2>staff room</h2>
-                    <button id="addstaffroom" onclick="showselectmodal(id)">+</button>
+                    <button class="addstaffroom" id="staffroom" value="staff" onclick="showselectmodal(id,value)">+</button>
                 </div>
                 <div id="chombr4">
                     <h2>Vault</h2>
-                    <button id="addvalaut" onclick="showselectmodal(id)">+</button>
+                    <button class="addvalaut" value="vault" onclick="showselectmodal(id,value)">+</button>
                 </div>
             </div>
         </div>
@@ -127,8 +126,10 @@
     <!-- ================================= select a worker ================================== -->
     <div id="blurbackround" class="forblurmodal3">
         <div id="formmodal3" class="modal3">
-            <h2 style="color: rgb(42, 42, 42) ;">Select Worker to Assign : </h2>
+            <div class="toflex">
+            <h2 style="color: rgb(42, 42, 42) ;"> Select Worker to Assign : </h2>
             <div id="workersplace"></div>
+            </div>
             <button id="close-btn" type="button" onclick="returntomain()">
                 <b>Close</b>
             </button>
