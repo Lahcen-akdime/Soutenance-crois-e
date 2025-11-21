@@ -19,6 +19,7 @@ const workerimageinmodal = document.getElementById("image2place");
 const workeremailinmodal = document.getElementById("worker-email");
 const workernumberinmodal = document.getElementById("worker-phone");
 const workerexperiencesplace = document.getElementById("experiences-place");
+const workerlocationinmodal = document.getElementById("location");
 // modal3 - add in section
 const selectmodal = document.getElementsByClassName("forblurmodal3")[0];
 const workersplaceinselectmodal = document.getElementById("workersplace")
@@ -89,6 +90,7 @@ else{
         workeremail : email,
         workerphonenumber : phonenumber,
         experiences : allexperiencestable ,
+        workerlocation : "Unassigned" ,
     }
     workersmemory.push(worker)
     // _____________________________ Local storage setItem _____________________________ //
@@ -113,7 +115,7 @@ else{
 }})
     // _____________________________ display image ____________________________________ //
 photolink.addEventListener("change",(e)=>{
-document.getElementById("imageplace").style.backgroundImage=`url(${photolink.value})`;
+    document.getElementById("imageplace").style.backgroundImage=`url(${photolink.value})`;
 })
     // ______________________________ add a experience ________________________________ // 
 Addexperiencebtn.addEventListener("click",(e)=>{
@@ -129,8 +131,8 @@ toaddnewexperiencecarte.innerHTML+=`<div class="Experiencecarte">
             </div>`;
 })
 // __________________________ display modal of description ___________________________ //
-function showdescriptionmodal(e,objectid){
-console.log(e.currentTarget)
+function showdescriptionmodal(objectid){
+
 // let array1 = 
 modaldescription.style.display="flex";
 let selectedworker = workersmemory.find((x)=>x.id===objectid);
@@ -139,6 +141,7 @@ workerroleinmodal.innerHTML=selectedworker.workerrole
 workerimageinmodal.style.backgroundImage=`url(${selectedworker.workerphotolink})`
 workeremailinmodal.innerHTML=selectedworker.workeremail
 workernumberinmodal.innerHTML= selectedworker.workerphonenumber
+workerlocationinmodal.innerHTML =selectedworker.workerlocation
 let array2 = selectedworker.experiences ;
 workerexperiencesplace.innerHTML="";
 for(element of array2) {
@@ -164,8 +167,9 @@ selectmodal.style.display="none";
 function affichage (){
 workerszone.innerHTML=""
  workersmemory.forEach(element => {
-    workerszone.innerHTML+=`<div class="workercarte"
-     onClick="showdescriptionmodal(event,${element.id})">
+    if(element.workerlocation=="Unassigned"){
+    workerszone.innerHTML+=`<div class="workercarte" data-loc-ation="unassigned"
+     onClick="showdescriptionmodal(${element.id})">
         <div class="workerimage"; style="background:url(${element.workerphotolink});
         background-size:cover"></div>
         <div>
@@ -173,7 +177,7 @@ workerszone.innerHTML=""
         <div><p>${element.workerrole}</p></div>
         </div>
         </div>`
-})}
+}})}
 affichage()
 // _________________________________ Modal 3 _____________________________________ //
 function showselectmodal(id,value){
@@ -182,33 +186,24 @@ function showselectmodal(id,value){
     workersmemory.forEach(element=>{
 // conditions pour les paraméttres de chaque sale  
     if(id==element.workerrole){
-        workersplaceinselectmodal.innerHTML+=`
-            <div id="selectcarte">
-                                <div class="workerimage" style="background:url(${element.workerphotolink});
-                                background-size:cover"></div>
-                                <div>
-                                    <div><b>${element.workername}</b></div>
-                                    <div><p>${element.workerrole}</p></div>
-                                </div>
-            </div>
-            `
-            }
+        afficherleworker(element,value);
+    }
     if(element.workerrole=="Netoyage" && value != "vault"){
-            workersplaceinselectmodal.innerHTML+=`
-            <div id="selectcarte">
-                                <div class="workerimage" style="background:url(${element.workerphotolink});
-                                background-size:cover"></div>
-                                <div>
-                                    <div><b>${element.workername}</b></div>
-                                    <div><p>${element.workerrole}</p></div>
-                                </div>
-            </div>
-            `
+           afficherleworker(element,value);
         }
     else if(element.workerrole=="Autre"){
             if(value=="staff" || value=="vault" || value=="conference"){
-             workersplaceinselectmodal.innerHTML+=`
-            <div id="selectcarte">
+             afficherleworker(element,value);
+            }
+        }
+    else if(element.workerrole=="Manager"){
+           afficherleworker(element,value);
+}
+})}
+
+function afficherleworker(element,value){
+ workersplaceinselectmodal.innerHTML+=`
+            <div id="selectcarte" onClick= "displayin_zone(${element.id},${value})">
                                 <div class="workerimage" style="background:url(${element.workerphotolink});
                                 background-size:cover"></div>
                                 <div>
@@ -217,20 +212,10 @@ function showselectmodal(id,value){
                                 </div>
             </div>
             `
-            }
-        }
-    else if(element.workerrole=="Manager"){
-            workersplaceinselectmodal.innerHTML+=`
-            <div id="selectcarte">
-                                <div class="workerimage" style="background:url(${element.workerphotolink});
-                                background-size:cover"></div>
-                                <div>
-                                    <div><b>${element.workername}</b></div>
-                                    <div><p>${element.workerrole}</p></div>
-                                </div>
-                        </div>
-            `
-}})}
-// ___________________________________________________________________________________ //
-
+}
+// _______________________________________ workers in Zone ____________________________________________ //
+function displayin_zone(id){
+workersmemory.find((x)=>x.id===id).workerlocation = "sécurité";
+affichage()
+}
     
