@@ -1,8 +1,8 @@
 //____________________________ Les variaiables / tableaux _____________________________ //
-let counter2 = 0; //pour le counter d'experience
+let counter2 = 0; //pour le counter d'experience //
 let workerszone = document.querySelector(".workerszone"); // aside worker place
 // _______________________________ Local storage data _________________________________ //
-let newid = JSON.parse(localStorage.getItem("id")) || 0; // id de chaque object
+let newid = JSON.parse(localStorage.getItem("id")) || 0; // id de chaque object //
 let workersmemory = JSON.parse(localStorage.getItem("worker")) || []; // array of objects
 // ____________________________________________________________________________________ //
 const formCreateWorker = document.getElementById("form-create-worker");
@@ -27,47 +27,76 @@ const workersplaceinselectmodal = document.getElementById("workersplace");
 const Addexperiencebtn = document.getElementById("Addexperience-btn");
 const toaddnewexperiencecarte = document.getElementById("allexperiences");
 const Experiencecarte = document.getElementsByClassName("Experiencecarte")[0];
+// ________________________________ add a experience ___________________________________ //
+Addexperiencebtn.addEventListener("click", (e) => {
+  toaddnewexperiencecarte.insertAdjacentHTML("beforeend", `<div class="Experiencecarte">
+                <label for="">Company :</label>
+                <input type="text" id="companyname">
+                <label for="">Role :</label>
+                <input type="text" id="role-in-company">
+                <label for="">From :</label>
+                <input type="date" id="debut">
+                <label for="">To :</label>
+                <input type="date" id="fin">
+            </div>`);
+});
 
 function displayform() {
   document.getElementById("blurbackround").style.display = "flex";
+  // ______________________ clear the experiences place ____________________________ //
+    toaddnewexperiencecarte.innerHTML= `<div class="Experiencecarte">
+                <label for="">Company :</label>
+                <input type="text" id="companyname">
+                <label for="">Role :</label>
+                <input type="text" id="role-in-company">
+                <label for="">From :</label>
+                <input type="date" id="debut">
+                <label for="">To :</label>
+                <input type="date" id="fin">
+            </div>`
 }
+
+
+// _______________________________ display image ___________________________________ //
+photolink.addEventListener("change", (e) => {
+  document.getElementById(
+    "imageplace"
+  ).style.backgroundImage = `url(${photolink.value})`;
+});
 // ________________________________ submit _________________________________ //
 formCreateWorker.addEventListener("submit", (e) => {
   e.preventDefault();
-  document.getElementById("blurbackround").style.display = "none"; // modi
-  // __________________________ inputs values ____________________________ //
+  // __________________________ inputs values _____________________________ //
   let name = document.getElementById("name").value;
   let role = document.getElementsByTagName("select")[0].value;
-  let photolink = document.getElementById("photolink");
+  // let photolink = document.getElementById("photolink");
   let email = document.getElementById("email").value;
   let phonenumber = document.getElementById("phonenumber").value;
   // _______________________________ Regex _______________________________ //
-  if (name == "" || photolink.value == "" || email == "" || phonenumber == "") {
-    alert("error");
-    document.getElementById("blurbackround").style.display = "flex";
-  } else if (!lienregex.test(photolink.value)) {
-    alert("Le lien est pas correct");
-    document.getElementById("blurbackround").style.display = "flex";
-    return;
+  if (name.trim() == "" ||
+  //  photolink.value.trim() == "" ||
+  email.trim() == "" || phonenumber.trim() == "") {
+    alert("Le formulaire est vide !");
+  // } else if (!lienregex.test(photolink.value)) {
+  //   alert("Le lien est pas correct");
+  //   return;
   } else if (!emailregex.test(email)) {
     alert(
       "pardon , l'email est incorrect , entrez la form correct de gmail pour valider"
     );
-    document.getElementById("blurbackround").style.display = "flex";
     return;
   } else if (!phoneregex.test(phonenumber)) {
     alert("pardon , le numero est incorrect , entrez 10 nombres pour valider");
-    document.getElementById("blurbackround").style.display = "flex";
     return;
   } else {
     // _____________________________ l'object d'experiences _____________________________ //
     let AllExperiencecartes = document.querySelectorAll(".Experiencecarte");
     let allexperiencestable = [];
-    AllExperiencecartes.forEach((element) => {
-      let company = element.querySelector("#companyname").value;
-      let role_incompany = element.querySelector("#role-in-company").value;
-      let datedebut = element.querySelector("#debut").value;
-      let datefin = element.querySelector("#fin").value;
+    AllExperiencecartes.forEach((experienceCard) => {
+      let company = experienceCard.querySelector("#companyname").value;
+      let role_incompany = experienceCard.querySelector("#role-in-company").value;
+      let datedebut = experienceCard.querySelector("#debut").value;
+      let datefin = experienceCard.querySelector("#fin").value;
       experience = {
         id: counter2,
         companyname: company,
@@ -93,44 +122,14 @@ formCreateWorker.addEventListener("submit", (e) => {
     // _____________________________ Local storage setItem _____________________________ //
     localStorage.setItem("worker", JSON.stringify(workersmemory));
     localStorage.setItem("id", JSON.stringify(newid));
+    // ______________________________ reset the form ___________________________________ //
+    document.getElementById("blurbackround").style.display = "none"; 
+    document.getElementsByTagName("form")[0].reset();
     // ________________________________ Affichage ______________________________________ //
     affichage();
-    // ______________________________ reste the form ___________________________________ //
-    document.getElementsByTagName("form")[0].reset();
-    workerexperiencesplace.innerHTML = `
-<div class="experiencediv">
-    <div>
-        <h4 style="display: inline;">Place : </h4>
-        <p style="display: inline;">${element.companyname}</p>
-    </div>
-            <ul>
-                <li><b>Role : </b><span>${element.role_in_company}</span></li>
-                <li><b>Period : </b><span>${element.date_debut_with_company}</span> / 
-                <span>${element.date_end_with_company}</span></li>
-            </ul>
-</div>`;
   }
 });
-// _____________________________ display image ____________________________________ //
-photolink.addEventListener("change", (e) => {
-  document.getElementById(
-    "imageplace"
-  ).style.backgroundImage = `url(${photolink.value})`;
-});
-// ______________________________ add a experience ________________________________ //
-Addexperiencebtn.addEventListener("click", (e) => {
-  toaddnewexperiencecarte.innerHTML += `<div class="Experiencecarte">
-                <label for="">Company :</label>
-                <input type="text" id="companyname">
-                <label for="">Role :</label>
-                <input type="text" id="role-in-company">
-                <label for="">From :</label>
-                <input type="date" id="debut">
-                <label for="">To :</label>
-                <input type="date" id="fin">
-            </div>`;
-});
-// __________________________ display modal of description ___________________________ //
+// ________________________ display modal of description _______________________________ //
 function showdescriptionmodal(objectid) {
   // let array1 =
   modaldescription.style.display = "flex";
@@ -146,24 +145,24 @@ function showdescriptionmodal(objectid) {
   for (element of array2) {
     workerexperiencesplace.innerHTML += `
 <div class="experiencediv">
-    <div>
-        <h4 style="display: inline;">Place : </h4>
-        <p style="display: inline;">${element.companyname}</p>
-    </div>
-            <ul>
-                <li><b>Role : </b><span>${element.role_in_company}</span></li>
-                <li><b>Period : </b><span>${element.date_debut_with_company}</span> / 
-                <span>${element.date_end_with_company}</span></li>
-            </ul>
+<div>
+<h4 style="display: inline;">Place : </h4>
+<p style="display: inline;">${element.companyname}</p>
+</div>
+<ul>
+<li><b>Role : </b><span>${element.role_in_company}</span></li>
+<li><b>Period : </b><span>${element.date_debut_with_company}</span> / 
+<span>${element.date_end_with_company}</span></li>
+</ul>
 </div>`;
-  }
+}
 }
 function returntomain() {
   document.getElementById("blurbackround").style.display = "none";
   modaldescription.style.display = "none";
   selectmodal.style.display = "none";
 }
-// ________________________________ Affichage _____________________________________ //
+// __________________________________________ Affichage __________________________________________ //
 function affichage() {
   workerszone.innerHTML = "";
   workersmemory.forEach((element) => {
@@ -180,8 +179,7 @@ function affichage() {
     }
   });
 }
-affichage();
-// _________________________________ Modal 3 _____________________________________ //
+// __________________________________________ Modal 3 __________________________________________ //
 function showselectmodal(id, value) {
   selectmodal.style.display = "flex";
   workersplaceinselectmodal.innerHTML = "";
@@ -206,9 +204,9 @@ function showselectmodal(id, value) {
 
 function afficherleworker(element, value) {
   workersplaceinselectmodal.innerHTML += `
-            <div id="selectcarte" onClick= "displayin_zone(${element.id},'${value}')">
-                                <div class="workerimage" style="background:url(${element.workerphotolink})";
-                                background-size:cover"></div>
+            <div id="selectcarte" onClick= "assigner_displayin_zone(${element.id},'${value}')">
+                                <div class="workerimage" style="background:url(${element.workerphotolink});background-size:cover">
+                                </div>
                                 <div>
                                     <div><b>${element.workername}</b></div>
                                     <div><p>${element.workerrole}</p></div>
@@ -216,28 +214,47 @@ function afficherleworker(element, value) {
             </div>
             `;
 }
-// _______________________________________ workers in Zone ____________________________________________ //
-function displayin_zone(id, value) {
-  selectmodal.style.display = "none";
-  console.log(value);
-  workersmemory.find((x) => x.id === id).workerlocation = value;
-  let worker = workersmemory.find((x) => x.id === id);
+// __________________________________________ Add workers in Zone __________________________________________ //
+function assigner_displayin_zone(id, value) {
+  const worker = workersmemory.find((x) => x.id === id);
+  worker.workerlocation = value
   localStorage.setItem("worker", JSON.stringify(workersmemory));
-  const workerplace = document.getElementById(`${value}`);
-  console.log(workerplace);
-  workerplace.innerHTML += `<div class="carte" onClick="showdescriptionmodal(${id})">
+  load_displayin_zone(worker, value);
+  selectmodal.style.display = "none";
+}
+function load_displayin_zone(worker, value) {
+  // console.log(value)
+  const workerplace = document.getElementsByClassName(value)[0];
+  workerplace.innerHTML += `<div class="carte"><div style="display:flex" onClick="showdescriptionmodal(${worker.id})">
                            <div class="image3place" style = "background : url(${worker.workerphotolink});background-size:cover"></div>
-                           <div style="font-size:10px"> name : ${worker.workername} <br>role : ${worker.workerrole}</div>
-                           <button id="deletebtn" onClick="restoretoaside(${id})">-</button>
-                    </div>`;
+                           <div style="font-size:10px;margin:0" > name : ${worker.workername} <br>role : ${worker.workerrole}</div></div>
+                           <button id="deletebtn" onClick="restoretoaside(${worker.id})">-</button>
+                    </div>`;     
   affichage();
 }
+
+
 function restoretoaside(id) {
-  modaldescription.style.display = "none";
-  selectmodal.style.display = "none";
   workersmemory.find((x) => x.id === id).workerlocation = "Unassigned";
   localStorage.setItem("worker", JSON.stringify(workersmemory));
-  affichage();
-  displayin_zone();
+ organization ()
+
 }
-displayin_zone();
+// __________________________________ Display worker by location in Zone _____________________________________ //
+function organization (){
+  // clear toute les zones
+  let zones = document.getElementsByClassName("zonecrd");
+  console.log(zones)
+ Array.from(zones).forEach(zone => {
+     zone.innerHTML=""
+  })
+  //
+workersmemory.forEach(element => {
+  if(element.workerlocation!="Unassigned"){
+    load_displayin_zone(element, element.workerlocation)
+  }
+  });
+  affichage();
+}
+organization ()
+// 

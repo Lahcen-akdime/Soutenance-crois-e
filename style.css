@@ -253,7 +253,7 @@ form{
     width: 30%;
     border-radius: 50%;
     border: 1px solid rgb(82, 82, 82);
-    background:url(//static.vecteezy.com/system/resources/previews/036/280/651/original/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg);
+    background:url(https://www.medikabazaar.com/static/images/user.png);
     background-size: cover;
    
 }
@@ -441,7 +441,7 @@ gap:1rem;
     background : linear-gradient(rgb(234, 234, 234),rgb(196, 196, 196));
     display: flex;
     padding: 5px;
-    gap: 5%;
+    width: 11rem;
 }
 .zonecrd{
     display: flex;
