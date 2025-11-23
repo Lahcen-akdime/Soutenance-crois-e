@@ -78,11 +78,11 @@
     <!-- _____________________________________  formulaire _____________________________________ -->
     <div id="blurbackround">
         <div id="formmodal">
-            <form action="" id="form-create-worker">
-                <label for="">Nom :</label>
+            <form id="form-create-worker">
+                <label >Nom :</label>
                 <input id="name" type="text">
-                <label for="">Role :</label>
-                <select name="roles" id="">
+                <label >Role :</label>
+                <select name="roles">
                     <option value="Réceptionniste">Réceptionniste</option>
                     <option value="Technicien IT">Technicien IT</option>
                     <option value="Agent de sécurité">Agent de sécurité</option>
@@ -90,28 +90,28 @@
                     <option value="Netoyage">Netoyage</option>
                     <option value="Autre">Autre</option>
                 </select>
-                <label for="">Photo (url) :</label>
+                <label >Photo (url) :</label>
                 <input id="photolink" type="url">
                 <div id="imageplace"></div>
-                <label for="">Experiences :</label>
+                <label >Experiences :</label>
                 <div id="allexperiences">
                     <div class="Experiencecarte" id="0">
-                        <label for="">Company :</label>
+                        <label >Company :</label>
                         <input type="text" id="companyname">
-                        <label for="">Role :</label>
+                        <label >Role :</label>
                         <input type="text" id="role-in-company">
-                        <label for="">From :</label>
+                        <label >From :</label>
                         <input type="date" id="debut">
-                        <label for="">To :</label>
+                        <label >To :</label>
                         <input type="date" id="fin">
                     </div>
                 </div>
                 <button id="Addexperience-btn" type="button"><b>Add Experience</b> </button>
-                <label for="">Email :</label>
+                <label >Email :</label>
                 <input id="email" type="email">
-                <label for="">Phone number :</label>
+                <label >Phone number :</label>
                 <input id="phonenumber" type="number">
-                <input type="submit" id="Update-worker-btn"></input>
+                <input type="submit" id="Update-worker-btn">
                 <button id="close-btn" type="button" onclick="returntomain()"><b>Close</b></button>
             </form>
         </div>

@@ -1,5 +1,5 @@
-//____________________________ Les variaiables / tableaux _____________________________ //
-let counter2 = 0; //pour le counter d'experience //
+//____________________________   Variaiabls / Tables   _____________________________ //
+let countourdexperiences = 0; //pour le counter d'experience //
 let workerszone = document.querySelector(".workerszone"); // aside worker place
 let zones = document.getElementsByClassName("zonecrd");
 // _______________________________ Local storage data _________________________________ //
@@ -29,7 +29,7 @@ const workersplaceinselectmodal = document.getElementById("workersplace");
 const Addexperiencebtn = document.getElementById("Addexperience-btn");
 const toaddnewexperiencecarte = document.getElementById("allexperiences");
 const Experiencecarte = document.getElementsByClassName("Experiencecarte")[0];
-// ________________________________ add a experience ___________________________________ //
+// ________________________________ Add a experience ___________________________________ //
 Addexperiencebtn.addEventListener("click", (e) => {
   toaddnewexperiencecarte.insertAdjacentHTML("beforeend", `<div class="Experiencecarte">
                 <label for="">Company :</label>
@@ -45,7 +45,7 @@ Addexperiencebtn.addEventListener("click", (e) => {
 
 function displayform() {
   document.getElementById("blurbackround").style.display = "flex";
-  // ______________________ clear the experiences place ____________________________ //
+  // ______________________ Clear the experiences place ____________________________ //
     toaddnewexperiencecarte.innerHTML= `<div class="Experiencecarte">
                 <label for="">Company :</label>
                 <input type="text" id="companyname">
@@ -57,11 +57,11 @@ function displayform() {
                 <input type="date" id="fin">
             </div>`
 }
-// _______________________________ display image ___________________________________ //
+// _______________________________ Display image ___________________________________ //
 photolink.addEventListener("change", (e) => {
 document.getElementById("imageplace").style.backgroundImage = `url(${photolink.value})`;
 });
-// _____________________________________ submit ______________________________________ //
+// _____________________________________ Submit ______________________________________ //
 formCreateWorker.addEventListener("submit", (e) => {
   e.preventDefault();
   // date experiences regex //
@@ -71,12 +71,16 @@ let AllExperiencecartes = document.querySelectorAll(".Experiencecarte");
       let datefin = experienceCard.querySelector("#fin").value;
     if(new Date(datedebut) > new Date()){
      alert("Pardon ! la date de debut d'experience est incorrect");
+     e.preventDefault();
+     return;
     }
     else if(new Date(datedebut) > new Date(datefin)){
     alert("Pardon ! la date de fin d'experience est incorrect");
+     e.preventDefault();
+     return;
     }
   });
-  // __________________________ inputs values _____________________________ //
+  // __________________________ Inputs values _____________________________ //
   let name = document.getElementById("name").value;
   let role = document.getElementsByTagName("select")[0].value;
   let photolink = document.getElementById("photolink");
@@ -89,7 +93,7 @@ let AllExperiencecartes = document.querySelectorAll(".Experiencecarte");
     alert("pardon , l'email est incorrect , entrez la form correct de gmail pour valider");
    }
   else {
-    // _____________________________ l'object d'experiences _____________________________ //
+    // _____________________________ L'object d'experiences _____________________________ //
     let allexperiencestable = [];
 let AllExperiencecartes = document.querySelectorAll(".Experiencecarte");
     AllExperiencecartes.forEach((experienceCard) => {
@@ -98,13 +102,13 @@ let AllExperiencecartes = document.querySelectorAll(".Experiencecarte");
       let datedebut = experienceCard.querySelector("#debut").value;
       let datefin = experienceCard.querySelector("#fin").value;
       experience = {
-        id: counter2,
+        id: countourdexperiences,
         companyname: company,
         role_in_company: role_incompany,
         date_debut_with_company: datedebut,
         date_end_with_company: datefin,
       };
-      counter2 += 1;
+      countourdexperiences += 1;
       allexperiencestable.push(experience);
     });
     // _____________________________ l'object principale _____________________________ //
@@ -169,7 +173,7 @@ function affichage() {
     if (element.workerlocation == "Unassigned") {
       workerszone.innerHTML += `<div class="workercarte" data-loc-ation="unassigned"
      onClick="showdescriptionmodal(${element.id})">
-        <div class="workerimage"; style="background:url(${element.workerphotolink});
+        <div class="workerimage" style="background:url(${element.workerphotolink}) 
         background-size:cover"></div>
         <div>
         <div><b>${element.workername}</b></div>
