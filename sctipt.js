@@ -2,7 +2,6 @@
 let counter2 = 0; //pour le counter d'experience //
 let workerszone = document.querySelector(".workerszone"); // aside worker place
 let zones = document.getElementsByClassName("zonecrd");
-let AllExperiencecartes = document.querySelectorAll(".Experiencecarte");
 // _______________________________ Local storage data _________________________________ //
 let newid = JSON.parse(localStorage.getItem("id")) || 0; // id de chaque object //
 let workersmemory = JSON.parse(localStorage.getItem("worker")) || []; // array of objects
@@ -10,7 +9,7 @@ let workersmemory = JSON.parse(localStorage.getItem("worker")) || []; // array o
 const formCreateWorker = document.getElementById("form-create-worker");
 const workercarte = document.querySelector(".workercarte"); // class css de carte
 // regex
-const emailregex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{3,}$/gm;
+const emailregex = /^[\w.-]+@[\w-]+\.[A-Za-z]{2,}$/;
 const phoneregex = /^\d{10}$/;
 const lienregex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/.*)?$/;
 const dateregex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(20[0-9]{2})$/;
@@ -58,49 +57,41 @@ function displayform() {
                 <input type="date" id="fin">
             </div>`
 }
-
-
 // _______________________________ display image ___________________________________ //
 photolink.addEventListener("change", (e) => {
-  document.getElementById(
-    "imageplace"
-  ).style.backgroundImage = `url(${photolink.value})`;
+document.getElementById("imageplace").style.backgroundImage = `url(${photolink.value})`;
 });
-// ________________________________ submit _________________________________ //
+// _____________________________________ submit ______________________________________ //
 formCreateWorker.addEventListener("submit", (e) => {
   e.preventDefault();
+  // date experiences regex //
+let AllExperiencecartes = document.querySelectorAll(".Experiencecarte");
+    AllExperiencecartes.forEach(experienceCard => {
+      let datedebut = experienceCard.querySelector("#debut").value;
+      let datefin = experienceCard.querySelector("#fin").value;
+    if(new Date(datedebut) > new Date()){
+     alert("Pardon ! la date de debut d'experience est incorrect");
+    }
+    else if(new Date(datedebut) > new Date(datefin)){
+    alert("Pardon ! la date de fin d'experience est incorrect");
+    }
+  });
   // __________________________ inputs values _____________________________ //
   let name = document.getElementById("name").value;
   let role = document.getElementsByTagName("select")[0].value;
-  // let photolink = document.getElementById("photolink");
+  let photolink = document.getElementById("photolink");
   let email = document.getElementById("email").value;
   let phonenumber = document.getElementById("phonenumber").value;
   // _______________________________ Regex _______________________________ //
-  if (name.trim() == "" ||
-  //  photolink.value.trim() == "" ||
-  email.trim() == "" || phonenumber.trim() == "") {
+  if (name.trim() == "" || email.trim() == "" || phonenumber.trim() == "") {
     alert("Le formulaire est vide !");
-  // } else if (!lienregex.test(photolink.value)) {
-  //   alert("Le lien est pas correct");
-  //   return;
-  } else if (!emailregex.test(email)) {
-    alert(
-      "pardon , l'email est incorrect , entrez la form correct de gmail pour valider"
-    );
-    return;
-  }
-    // AllExperiencecartes.forEach(experienceCard => {
-    //   let company = experienceCard.querySelector("#companyname").value;
-    //   let role_incompany = experienceCard.querySelector("#role-in-company").value;
-    //   let datedebut = experienceCard.querySelector("#debut").value;
-    //   let datefin = experienceCard.querySelector("#fin").value;
-    //   if(!lienregex.test(photolink.value)){
-    // alert("Le lien est pas correct");
-    //   return;
-    // }) 
+   } else if (!emailregex.test(email)) {
+    alert("pardon , l'email est incorrect , entrez la form correct de gmail pour valider");
+   }
   else {
     // _____________________________ l'object d'experiences _____________________________ //
     let allexperiencestable = [];
+let AllExperiencecartes = document.querySelectorAll(".Experiencecarte");
     AllExperiencecartes.forEach((experienceCard) => {
       let company = experienceCard.querySelector("#companyname").value;
       let role_incompany = experienceCard.querySelector("#role-in-company").value;
@@ -116,9 +107,6 @@ formCreateWorker.addEventListener("submit", (e) => {
       counter2 += 1;
       allexperiencestable.push(experience);
     });
-    //  _____________________________ Date regex _____________________________ //
-
-
     // _____________________________ l'object principale _____________________________ //
     const worker = {
       id: newid++,
@@ -143,7 +131,7 @@ formCreateWorker.addEventListener("submit", (e) => {
 });
 // ________________________ display modal of description _______________________________ //
 function showdescriptionmodal(objectid) {
-  // let array1 =
+ const workerexperiencesplace = document.getElementById("experiences-place");
   modaldescription.style.display = "flex";
   let selectedworker = workersmemory.find((x) => x.id === objectid);
   workernameinmodal.innerHTML = selectedworker.workername;
@@ -154,7 +142,7 @@ function showdescriptionmodal(objectid) {
   workerlocationinmodal.innerHTML = selectedworker.workerlocation;
   let array2 = selectedworker.experiences;
   workerexperiencesplace.innerHTML = "";
-  for (element of array2) {
+  array2.forEach(element =>{
     workerexperiencesplace.innerHTML += `
 <div class="experiencediv">
 <div>
@@ -166,8 +154,8 @@ function showdescriptionmodal(objectid) {
 <li><b>Period : </b><span>${element.date_debut_with_company}</span> / 
 <span>${element.date_end_with_company}</span></li>
 </ul>
-</div>`;
-}
+</div>`
+  })
 }
 function returntomain() {
   document.getElementById("blurbackround").style.display = "none";
@@ -213,7 +201,6 @@ function showselectmodal(id, value) {
     }
   });
 }
-
 function afficherleworker(element, value) {
   workersplaceinselectmodal.innerHTML += `
             <div id="selectcarte" onClick= "assigner_displayin_zone(${element.id},'${value}')">
@@ -245,8 +232,6 @@ function load_displayin_zone(worker, value) {
                     </div>`;     
   affichage();
 }
-
-
 function restoretoaside(id) {
   workersmemory.find((x) => x.id === id).workerlocation = "Unassigned";
   localStorage.setItem("worker", JSON.stringify(workersmemory));
