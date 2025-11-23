@@ -1,6 +1,8 @@
 //____________________________ Les variaiables / tableaux _____________________________ //
 let counter2 = 0; //pour le counter d'experience //
 let workerszone = document.querySelector(".workerszone"); // aside worker place
+let zones = document.getElementsByClassName("zonecrd");
+let AllExperiencecartes = document.querySelectorAll(".Experiencecarte");
 // _______________________________ Local storage data _________________________________ //
 let newid = JSON.parse(localStorage.getItem("id")) || 0; // id de chaque object //
 let workersmemory = JSON.parse(localStorage.getItem("worker")) || []; // array of objects
@@ -11,6 +13,7 @@ const workercarte = document.querySelector(".workercarte"); // class css de cart
 const emailregex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{3,}$/gm;
 const phoneregex = /^\d{10}$/;
 const lienregex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/.*)?$/;
+const dateregex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(20[0-9]{2})$/;
 // modal2
 const modaldescription = document.getElementsByClassName("forblurmodal2")[0];
 const workernameinmodal = document.getElementById("worker-name");
@@ -85,12 +88,18 @@ formCreateWorker.addEventListener("submit", (e) => {
       "pardon , l'email est incorrect , entrez la form correct de gmail pour valider"
     );
     return;
-  } else if (!phoneregex.test(phonenumber)) {
-    alert("pardon , le numero est incorrect , entrez 10 nombres pour valider");
-    return;
-  } else {
+  }
+    // AllExperiencecartes.forEach(experienceCard => {
+    //   let company = experienceCard.querySelector("#companyname").value;
+    //   let role_incompany = experienceCard.querySelector("#role-in-company").value;
+    //   let datedebut = experienceCard.querySelector("#debut").value;
+    //   let datefin = experienceCard.querySelector("#fin").value;
+    //   if(!lienregex.test(photolink.value)){
+    // alert("Le lien est pas correct");
+    //   return;
+    // }) 
+  else {
     // _____________________________ l'object d'experiences _____________________________ //
-    let AllExperiencecartes = document.querySelectorAll(".Experiencecarte");
     let allexperiencestable = [];
     AllExperiencecartes.forEach((experienceCard) => {
       let company = experienceCard.querySelector("#companyname").value;
@@ -107,6 +116,9 @@ formCreateWorker.addEventListener("submit", (e) => {
       counter2 += 1;
       allexperiencestable.push(experience);
     });
+    //  _____________________________ Date regex _____________________________ //
+
+
     // _____________________________ l'object principale _____________________________ //
     const worker = {
       id: newid++,
@@ -221,6 +233,7 @@ function assigner_displayin_zone(id, value) {
   localStorage.setItem("worker", JSON.stringify(workersmemory));
   load_displayin_zone(worker, value);
   selectmodal.style.display = "none";
+Zone_empty_red_background()
 }
 function load_displayin_zone(worker, value) {
   // console.log(value)
@@ -238,13 +251,12 @@ function restoretoaside(id) {
   workersmemory.find((x) => x.id === id).workerlocation = "Unassigned";
   localStorage.setItem("worker", JSON.stringify(workersmemory));
  organization ()
+Zone_empty_red_background()
 
 }
 // __________________________________ Display worker by location in Zone _____________________________________ //
 function organization (){
   // clear toute les zones
-  let zones = document.getElementsByClassName("zonecrd");
-  console.log(zones)
  Array.from(zones).forEach(zone => {
      zone.innerHTML=""
   })
@@ -257,4 +269,17 @@ workersmemory.forEach(element => {
   affichage();
 }
 organization ()
-// 
+// _______________________________________ Zone empty == red background _______________________________________ //
+function Zone_empty_red_background() {
+  Array.from(zones).forEach(zone => {
+      if(zone.querySelector(".carte")==null){
+       zone.parentElement.style.background ="rgba(248, 3, 3, 0.30)";
+      }
+      else{
+       zone.parentElement.style.background=" rgba(4, 252, 8, 0.16)";
+      }
+   })
+}
+Zone_empty_red_background()
+
+
