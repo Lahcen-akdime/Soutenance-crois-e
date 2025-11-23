@@ -1,9 +1,9 @@
 //____________________________   Variaiabls / Tables   _____________________________ //
 let countourdexperiences = 0; //pour le counter d'experience //
-let workerszone = document.querySelector(".workerszone"); // aside worker place
+let workerszone = document.querySelector(".workerszone");           // aside worker place
 let zones = document.getElementsByClassName("zonecrd");
 // _______________________________ Local storage data _________________________________ //
-let newid = JSON.parse(localStorage.getItem("id")) || 0; // id de chaque object //
+let newid = JSON.parse(localStorage.getItem("id")) || 0;         // id de chaque object //
 let workersmemory = JSON.parse(localStorage.getItem("worker")) || []; // array of objects
 // ____________________________________________________________________________________ //
 const formCreateWorker = document.getElementById("form-create-worker");
@@ -40,7 +40,7 @@ Addexperiencebtn.addEventListener("click", (e) => {
                 <input type="date" id="debut">
                 <label for="">To :</label>
                 <input type="date" id="fin">
-            </div>`);
+            </div>`)
 });
 
 function displayform() {
