@@ -29,6 +29,8 @@ const workersplaceinselectmodal = document.getElementById("workersplace");
 const Addexperiencebtn = document.getElementById("Addexperience-btn");
 const toaddnewexperiencecarte = document.getElementById("allexperiences");
 const Experiencecarte = document.getElementsByClassName("Experiencecarte")[0];
+console.log(new Date());
+
 // ________________________________ Add a experience ___________________________________ //
 Addexperiencebtn.addEventListener("click", (e) => {
   toaddnewexperiencecarte.insertAdjacentHTML("beforeend", `<div class="Experiencecarte">
@@ -63,23 +65,26 @@ document.getElementById("imageplace").style.backgroundImage = `url(${photolink.v
 });
 // _____________________________________ Submit ______________________________________ //
 formCreateWorker.addEventListener("submit", (e) => {
+  let errordateflag = false ;
   e.preventDefault();
+
   // date experiences regex //
 let AllExperiencecartes = document.querySelectorAll(".Experiencecarte");
     AllExperiencecartes.forEach(experienceCard => {
       let datedebut = experienceCard.querySelector("#debut").value;
       let datefin = experienceCard.querySelector("#fin").value;
     if(new Date(datedebut) > new Date()){
-     alert("Pardon ! la date de debut d'experience est incorrect");
-     e.preventDefault();
-     return;
+      alert("Pardon ! la date de debut d'experience est incorrect");
+       errordateflag = true ;
     }
     else if(new Date(datedebut) > new Date(datefin)){
-    alert("Pardon ! la date de fin d'experience est incorrect");
-     e.preventDefault();
-     return;
+      alert("Pardon ! la date de fin d'experience est incorrect");
+       errordateflag = true ;
     }
   });
+   if (errordateflag){
+      return;
+    }
   // __________________________ Inputs values _____________________________ //
   let name = document.getElementById("name").value;
   let role = document.getElementsByTagName("select")[0].value;
@@ -173,8 +178,7 @@ function affichage() {
     if (element.workerlocation == "Unassigned") {
       workerszone.innerHTML += `<div class="workercarte" data-loc-ation="unassigned"
      onClick="showdescriptionmodal(${element.id})">
-        <div class="workerimage" style="background:url(${element.workerphotolink}) 
-        background-size:cover"></div>
+        <div class="workerimage" style="background:url(${element.workerphotolink}); background-size:cover"></div>
         <div>
         <div><b>${element.workername}</b></div>
         <div><p>${element.workerrole}</p></div>
